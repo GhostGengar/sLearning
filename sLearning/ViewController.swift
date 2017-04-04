@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
 
+    @IBOutlet var vocabularyTextField: UITextField!
+    @IBOutlet var definitionTextView: UITextView!
+    @IBOutlet var vietnameseMeaningTextView: UITextView!
+    @IBAction func saveWordAction(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
