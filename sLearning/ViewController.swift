@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet var vocabularyTextField: UITextField!
     @IBOutlet var definitionTextView: UITextView!
@@ -44,6 +44,7 @@ class ViewController: UIViewController {
         content.title = word
         content.subtitle = subDefinition
         content.body = definition
+        content.badge = 1
         
         let firstTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1800, repeats: false)
         let secondTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: false)
@@ -70,6 +71,20 @@ class ViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
     }
     
     override func viewDidLoad() {
